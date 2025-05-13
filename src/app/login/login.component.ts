@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   private fb = inject(UntypedFormBuilder);
   private router = inject(Router);
-
+  user$ = inject(LoginService);
   private readonly validEmail = 'UzLogin';
   private readonly validPassword = 'Uzlogin123$';
 
@@ -48,12 +49,10 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(): void {
-    this.signInForm.setErrors(null);
-
-    if (this.signInForm.invalid) {
-      this.signInForm.markAllAsTouched();
-      return;
-    }
+    this.user$.login(
+      this.signInForm.value.email,
+      this.signInForm.value.password
+    );
 
     const { email, password } = this.signInForm.value;
 
