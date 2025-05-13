@@ -26,10 +26,12 @@ import { LoginService } from './login/login.service';
 })
 export class AppComponent {
   loginService = inject(LoginService);
-  user: any = this.loginService.user$.asObservable;
+  user: any = this.loginService.user$.asObservable();
   showToolbar: boolean = false;
 
   constructor(private router: Router) {
+    console.log(this.loginService.user$.getValue());
+
     this.router.events
       .pipe(
         filter(
