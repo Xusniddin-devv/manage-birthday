@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   {
-    path: 'login',
+    path: '',
     loadComponent: () =>
       import('./login/login.component').then((m) => m.LoginComponent),
   },
