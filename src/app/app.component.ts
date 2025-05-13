@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   Router,
   NavigationEnd,
@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,8 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  loginService = inject(LoginService);
+  user: any = this.loginService.user$.asObservable;
   showToolbar: boolean = false;
 
   constructor(private router: Router) {

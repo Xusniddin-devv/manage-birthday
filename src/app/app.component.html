@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="header" *ngIf="showToolbar">
+<mat-toolbar color="primary" class="header" *ngIf="user|async">
       <button mat-button routerLink="/birthday-form">Add Birthdays</button>
       <button mat-button routerLink="/employees-list">View Employees</button>
 </mat-toolbar>
