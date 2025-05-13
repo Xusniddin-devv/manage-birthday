@@ -21,7 +21,7 @@ import { BirthdayService } from '../services/birthday.service';
     MatButtonModule,
   ],
   templateUrl: './birthday-form.component.html',
-  styleUrls: ['./birthday-form.component.css'],
+  styleUrls: ['./birthday-form.component.scss'],
 })
 export class BirthdayFormComponent {
   private fb = inject(FormBuilder);

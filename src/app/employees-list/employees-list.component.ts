@@ -10,7 +10,7 @@ import { catchError, tap, finalize } from 'rxjs/operators';
   selector: 'app-employees-list',
   imports: [CommonModule, RouterModule],
   templateUrl: './employees-list.component.html',
-  styleUrls: ['./employees-list.component.css'],
+  styleUrls: ['./employees-list.component.scss'],
 })
 export class EmployeesListComponent implements OnInit {
   private svc = inject(BirthdayService);
