@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="surname" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Birthdate</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthdate" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="form.invalid || submitting">
+    {{ submitting ? 'Adding...' : 'Add Birthday' }}
+  </button>
+</form>

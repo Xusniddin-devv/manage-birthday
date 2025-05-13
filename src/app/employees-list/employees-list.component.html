@@ -1,0 +1,27 @@
+<div class="list-container">
+  <h1>Employee Birthdays</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Birthdate</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let c of colleagues; let i = index">
+        <td>{{ c.name }}</td>
+        <td>{{ c.surname }}</td>
+        <td>{{ c.birthdate | date:'mediumDate' }}</td>
+        <td>
+          <button class="delete" (click)="deleteColleague(i)">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="colleagues.length === 0">
+        <td colspan="4" class="empty">No employees found.</td>
+      </tr>
+    </tbody>
+  </table>
+  <button routerLink="/" class="back">← Add New</button>
+</div>
