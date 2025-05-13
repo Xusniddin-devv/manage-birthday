@@ -25,5 +25,4 @@ export const routes: Routes = [
         (m) => m.EmployeesListComponent
       ),
   },
-  { path: '**', redirectTo: 'login' },
 ];
