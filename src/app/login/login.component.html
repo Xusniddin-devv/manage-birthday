@@ -1,0 +1,54 @@
+<form [formGroup]="signInForm" class="mt-8">
+  <mat-error
+    class="mb-4 block"
+    *ngIf="signInForm.hasError('invalidCredentials')"
+  >
+    Invalid email or password
+  </mat-error>
+
+  <mat-form-field class="w-full">
+    <mat-label>Login</mat-label>
+    <input matInput formControlName="email" />
+    <mat-error *ngIf="signInForm.get('email')?.hasError('required')">
+      Email address is required
+    </mat-error>
+    <mat-error *ngIf="signInForm.get('email')?.hasError('email')">
+      Please enter a valid email address
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      formControlName="password"
+    />
+    <button
+      mat-icon-button
+      type="button"
+      matSuffix
+      (click)="hide = !hide"
+    >
+      <mat-icon>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+    </button>
+    <mat-error *ngIf="signInForm.get('password')?.hasError('required')">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    mat-flat-button
+    color="primary"
+    class="mt-6 w-full flex items-center justify-center"
+    [disabled]="signInForm.disabled"
+    (click)="signIn()"
+  >
+    <span *ngIf="!signInForm.disabled">Sign in</span>
+    <mat-progress-spinner
+      *ngIf="signInForm.disabled"
+      diameter="24"
+      mode="indeterminate"
+    ></mat-progress-spinner>
+  </button>
+</form>

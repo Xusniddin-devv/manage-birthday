@@ -30,7 +30,7 @@ export class BirthdayFormComponent {
   form = this.fb.group({
     name: ['', Validators.required],
     surname: ['', Validators.required],
-    birthdate: [null, Validators.required], // will hold a Date
+    birthdate: [null, Validators.required],
   });
 
   submitting = false;
@@ -43,7 +43,6 @@ export class BirthdayFormComponent {
     const surname = this.form.value.surname!;
     const d = this.form.value.birthdate! as Date;
 
-    // Build YYYY-MM-DD in local time, so no UTC shift
     const year = d.getFullYear();
     const month = String(d.getMonth() + 1).padStart(2, '0');
     const day = String(d.getDate()).padStart(2, '0');

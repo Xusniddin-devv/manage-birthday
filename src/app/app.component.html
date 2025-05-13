@@ -1,8 +1,8 @@
- <mat-toolbar color="primary" class="header">
-      <button mat-button routerLink="/">Add Birthdays</button>
-      <button mat-button routerLink="/list">View Employees</button>
-    </mat-toolbar>
+<mat-toolbar color="primary" class="header" *ngIf="showToolbar">
+      <button mat-button routerLink="/birthday-form">Add Birthdays</button>
+      <button mat-button routerLink="/employees-list">View Employees</button>
+</mat-toolbar>
 
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
