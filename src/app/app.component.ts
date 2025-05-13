@@ -21,6 +21,7 @@ import { filter } from 'rxjs/operators';
     RouterLink,
   ],
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   showToolbar: boolean = false;
