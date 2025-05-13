@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'birthday-manager';

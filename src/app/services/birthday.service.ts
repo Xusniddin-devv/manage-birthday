@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, take, switchMap } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+import { environment } from './../environments/environment';
 
 export interface Colleague {
   name: string;
