@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs'; // Added 'of' import
+import { BehaviorSubject, map, Observable, of } from 'rxjs'; // Added 'of' import
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +10,8 @@ export class LoginService {
     password: string;
   } | null>(null);
   user$ = this.userSubject.asObservable(); // Better practice: expose as observable
+
+  isLoggedIn$ = this.user$.pipe(map((user) => user !== null));
 
   constructor() {}
 

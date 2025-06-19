@@ -1,45 +1,31 @@
-import { Component, inject } from '@angular/core';
-import {
-  Router,
-  NavigationEnd,
-  RouterOutlet,
-  RouterLink,
-} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from './login/login.service';
+import { Observable } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
-import { filter } from 'rxjs/operators';
-import { LoginService } from './login/login.service';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    MatToolbarModule,
-    MatButtonModule,
-    RouterLink,
-  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    RouterOutlet,
+    RouterLink,
+    NgIf,
+    AsyncPipe,
+  ],
 })
-export class AppComponent {
-  loginService = inject(LoginService);
-  user: any = this.loginService.user$.asObservable();
-  showToolbar: boolean = false;
+export class AppComponent implements OnInit {
+  isLoggedIn$!: Observable<boolean>;
 
-  constructor(private router: Router) {
-    console.log(this.loginService.user$.getValue());
+  constructor(private loginService: LoginService) {}
 
-    this.router.events
-      .pipe(
-        filter(
-          (event): event is NavigationEnd => event instanceof NavigationEnd
-        )
-      )
-      .subscribe((event: NavigationEnd) => {
-        this.showToolbar = event.urlAfterRedirects !== '/login';
-      });
+  ngOnInit(): void {
+    this.isLoggedIn$ = this.loginService.isLoggedIn$;
   }
 }

@@ -3,3 +3,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Add these rules to your global styles
+html, body {
+  background-color: #ffffff !important; /* Force white background */
+  color-scheme: light !important; /* Prevent dark mode color inversion */
+}
+
+/* Target Telegram web app specifically */
+.tgme_page, .tgme_page_wrap {
+  background-color: #ffffff !important;
+}
+
+/* Ensure Angular app container has white background */
+app-root {
+  background-color: #ffffff !important;
+  min-height: 100vh;
+  display: block;
+}
