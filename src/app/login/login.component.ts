@@ -34,7 +34,7 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
   private fb = inject(UntypedFormBuilder);
   private router = inject(Router);
-  user$ = inject(LoginService);
+  loginService = inject(LoginService);
   private readonly validEmail = 'UzLogin';
   private readonly validPassword = 'Uzlogin123$';
 
@@ -49,17 +49,26 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(): void {
-    this.user$.login(
-      this.signInForm.value.email,
-      this.signInForm.value.password
-    );
-
     const { email, password } = this.signInForm.value;
 
-    if (email === this.validEmail && password === this.validPassword) {
-      this.router.navigate(['birthday-form']);
-    } else {
-      this.signInForm.setErrors({ invalidCredentials: true });
-    }
+    // Disable form during authentication
+    this.signInForm.disable();
+
+    // Call login service and react to result
+    this.loginService.login(email, password).subscribe({
+      next: (success) => {
+        if (success) {
+          this.router.navigate(['birthday-form']);
+        } else {
+          this.signInForm.enable();
+          this.signInForm.setErrors({ invalidCredentials: true });
+        }
+      },
+      error: (error) => {
+        console.error('Login error:', error);
+        this.signInForm.enable();
+        this.signInForm.setErrors({ serverError: true });
+      },
+    });
   }
 }

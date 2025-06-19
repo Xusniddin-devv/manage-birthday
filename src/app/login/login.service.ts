@@ -1,32 +1,37 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs'; // Added 'of' import
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  user$: BehaviorSubject<{ username: string; password: string } | null> =
-    new BehaviorSubject<{ username: string; password: string } | null>(null);
+  private userSubject = new BehaviorSubject<{
+    username: string;
+    password: string;
+  } | null>(null);
+  user$ = this.userSubject.asObservable(); // Better practice: expose as observable
 
   constructor() {}
 
-  login(username: string, password: string): boolean {
-    if (username && password) {
-      console.log('correct username and password');
+  login(email: string, password: string): Observable<boolean> {
+    // Check credentials
+    const isValid = email === 'UzLogin' && password === 'Uzlogin123$';
 
-      this.user$.next({ username, password });
+    if (isValid) {
+      // Update authentication state with the user object
+      this.userSubject.next({ username: email, password: password });
+      return of(true);
+    } else {
+      this.userSubject.next(null); // ensure user is null on failed login
+      return of(false);
     }
-    return false;
   }
 
   logout(): void {
-    this.user$.next({ username: '', password: '' });
+    this.userSubject.next(null); // Use null consistently for logged out state
   }
 
-  // isLoggedIn(): boolean {
-  //   return (
-  //     this.user$.getValue().username !== '' &&
-  //     this.user$.getValue().password !== ''
-  //   );
-  // }
+  isLoggedIn(): boolean {
+    return this.userSubject.getValue() !== null;
+  }
 }
