@@ -10,3 +10,9 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
+
+# Add this redirect rule for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
