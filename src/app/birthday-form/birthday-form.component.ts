@@ -10,6 +10,7 @@ import { BirthdayService } from '../services/birthday.service';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { MatSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-birthday-form',
@@ -23,7 +24,8 @@ import { Router } from '@angular/router';
     MatNativeDateModule,
     MatButtonModule,
     MatIcon,
-    RouterLink,
+
+    MatSpinner,
   ],
   templateUrl: './birthday-form.component.html',
   styleUrls: ['./birthday-form.component.scss'],

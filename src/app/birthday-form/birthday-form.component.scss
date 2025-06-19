@@ -1,34 +1,115 @@
 :host {
   display: block;
-  max-width: 400px;
-  margin: 2rem auto;
-}
-mat-form-field {
   width: 100%;
-  margin-bottom: 1rem;
-}
-button {
-  width: 100%;
-}
-.birthday-form-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
+// Container with responsive width
+.birthday-form-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+// Header with responsive grid layout
 .form-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
   margin-bottom: 24px;
+  align-items: center;
 
   h2 {
     margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .import-option {
+    width: 100%;
+
+    button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      mat-icon {
+        margin-right: 4px;
+      }
+    }
   }
 }
 
+// Form layout using grid
 form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button[type="button"] {
+    margin-top: 8px;
+    min-height: 48px; // Better touch target size
+  }
+}
+
+// Tablet breakpoint (600px+)
+@media screen and (min-width: 600px) {
+  :host {
+    padding: 2rem;
+  }
+
+  .birthday-form-container {
+    max-width: 90%;
+    padding: 24px;
+  }
+
+  .form-header {
+    grid-template-columns: 1fr auto;
+
+    h2 {
+      text-align: left;
+    }
+
+    .import-option {
+      width: auto;
+    }
+  }
+
+  form {
+    grid-gap: 20px;
+  }
+}
+
+// Desktop breakpoint (960px+)
+@media screen and (min-width: 960px) {
+  .birthday-form-container {
+    max-width: 600px;
+    padding: 32px;
+  }
+
+  // Optional: two-column layout for wider screens
+  // Uncomment if you want name/surname fields side by side
+  /*
+  form {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 24px;
+
+    mat-form-field:nth-child(3),
+    button[type="button"] {
+      grid-column: span 2;
+    }
+  }
+  */
 }
