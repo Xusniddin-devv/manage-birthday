@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   jsonBin: {
-    id: '6821c4c38a456b79669c177d',
-    key: '$2a$10$dGU6OxS.rcObOX58GWX/ZuQG4/iHHIgl7ih7Pa5GtyMcDB9Gy6TKK',
+    id: '6851bb238a456b7966afdf50',
+    key: '$2a$10$aao6qWvYcyP888c/40hkceFvabbKqkGLe0iNd9OkhM.3bMO4/DEuq',
   },
 };

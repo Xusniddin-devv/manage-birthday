@@ -1,0 +1,207 @@
+// Mobile-first base styles
+.container {
+  padding: 16px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+// Card styling with better mobile support
+mat-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  mat-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    mat-card-title {
+      margin-bottom: 8px;
+      font-size: 1.25rem;
+    }
+
+    mat-card-subtitle {
+      margin-bottom: 16px;
+    }
+
+    .header-actions {
+      width: 100%;
+      margin: 8px 0;
+    }
+  }
+}
+
+// File upload section
+.file-upload-section {
+  margin: 16px 0;
+  width: 100%;
+}
+
+.file-input-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 12px;
+  width: 100%;
+}
+
+.filename-display {
+  font-style: italic;
+  word-break: break-all;
+  padding: 8px 0;
+  grid-column: 1 / -1;
+}
+
+// Instructions and preview sections
+.file-instructions {
+  margin: 16px 0;
+  padding: 12px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  font-size: 0.9rem;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  ol {
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+}
+
+// Stats display
+.import-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 8px;
+  margin-bottom: 16px;
+
+  .stat-item {
+    padding: 8px;
+    background-color: #e3f2fd;
+    border-radius: 4px;
+    text-align: center;
+  }
+}
+
+// Table container
+.table-container {
+  width: 100%;
+  overflow-x: auto; // Horizontal scroll for tables on small screens
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  min-width: 300px; // Ensure minimum width for readability
+}
+
+// Error section
+.error-section {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #ffebee;
+  border-radius: 4px;
+
+  h3 {
+    color: #c62828;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .error-list {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-left: 16px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+}
+
+// Card actions
+mat-card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+  padding: 16px;
+}
+
+// Tablet breakpoint (600px+)
+@media screen and (min-width: 600px) {
+  .container {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  mat-card-header {
+    flex-direction: row !important;
+    align-items: center !important;
+
+    .header-actions {
+      width: auto !important;
+      margin-left: auto !important;
+    }
+  }
+
+  .file-input-wrapper {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+
+    .filename-display {
+      grid-column: 2;
+    }
+  }
+
+  .import-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  mat-card-actions {
+    justify-content: end;
+    button {
+      width: auto;
+    }
+  }
+}
+
+// Desktop breakpoint (960px+)
+@media screen and (min-width: 960px) {
+  .container {
+    max-width: 1000px;
+  }
+
+  mat-card {
+    padding: 24px;
+  }
+
+  .file-upload-section {
+    margin: 24px 0;
+  }
+
+  .preview-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+  }
+
+  // If the preview and errors are side-by-side on very large screens
+  @media screen and (min-width: 1200px) {
+    .preview-section {
+      grid-template-columns: 2fr 1fr;
+
+      .error-section {
+        margin-top: 0;
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ export class LoginService {
 
   login(username: string, password: string): boolean {
     if (username && password) {
-      console.log('ujkhk');
+      console.log('correct username and password');
 
       this.user$.next({ username, password });
     }

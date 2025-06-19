@@ -7,6 +7,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { BirthdayService } from '../services/birthday.service';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-birthday-form',
@@ -19,6 +22,8 @@ import { BirthdayService } from '../services/birthday.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatIcon,
+    RouterLink,
   ],
   templateUrl: './birthday-form.component.html',
   styleUrls: ['./birthday-form.component.scss'],
@@ -59,5 +64,9 @@ export class BirthdayFormComponent {
         this.submitting = false;
       },
     });
+  }
+  private router = inject(Router);
+  navigateToImport(): void {
+    this.router.navigate(['/import-birthdays']);
   }
 }

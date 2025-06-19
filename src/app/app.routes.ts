@@ -21,4 +21,11 @@ export const routes: Routes = [
         (m) => m.EmployeesListComponent
       ),
   },
+  {
+    path: 'import-birthdays',
+    loadComponent: () =>
+      import('./add-with-file/add-with-file.component').then(
+        (m) => m.AddWithFileComponent
+      ),
+  },
 ];
